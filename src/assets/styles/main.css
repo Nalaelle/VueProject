@@ -1,0 +1,69 @@
+/* @import './base.css'; */
+@import './Header.css';
+@import './Footer.css';
+@import './Home.css';
+@import './Housing.css';
+@import './About.css';
+@import './Error.css';
+@import './Dropdown.css';
+@import './Cards.css';
+@import './Carrousel.css';
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap");
+
+:root {
+    --colorPrimary: #ff6060;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Montserrat", "Segoe UI", "Roboto", "Oxygen", "Helvetica Neue",
+        sans-serif;
+
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+/* 
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
+
+ */
