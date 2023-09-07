@@ -42,6 +42,7 @@ function reverse(){
     arrowClassName = dropdownValue.value ? 'arrowOpen' : 'arrowClose';
 }
 
+
 </script>
 
 

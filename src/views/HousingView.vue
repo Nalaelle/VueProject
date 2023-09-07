@@ -42,6 +42,15 @@
 
 <script setup lang="ts">
 import Dropdown from "../components/DropdownHousing.vue";
+
+
+
+
+
+
+
+
+
 </script>
 
 

@@ -2,7 +2,7 @@
   <div class="about">
     <main className="main">
         <div className="imgBanner"></div>
-        <Dropdown dataAbout={data} />
+        <Dropdown />
     </main>
 </div>
 </template>

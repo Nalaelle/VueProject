@@ -1,71 +1,50 @@
 <template>
-        <section className="homePage">
-            <!-- {data.map((el) => (
-                <RouterLink
-                    key={el.id}
-                    to={`housing/${el.id}`}
-                    className={style.card}
-                >
-                    <article>
-                        <img
-                            className={style.imgCard}
-                            src={el.cover}
-                            alt={el.title}
-                        />
-                        <p className={style.titleLocation}>{el.title}</p>
-                    </article>
-                </RouterLink>
-            ))} -->
-
-            <RouterLink :to="`/housing:${el.id}`" className="card" >
+        <section class="homePage">
+            <RouterLink :to="`/housing:${id}`" class="card" >
                 <article>
                     <img
-                        className="imgCard"
-                        :src="el.cover"
-                        :alt="el.title"
+                        class="imgCard"
+                        :src="cover"
+                        :alt="title"
                     />
-                    <p className="titleLocation">{{ el.title }}</p>
+                    <p class="titleLocation">{{ title }}</p>
                 </article>
             </RouterLink>
-            <!--  -->
-
-            <article>
-                <img className="imgCard" src="@/assets/logoVue.svg" alt="factice !" />
-                <p className="titleLocation">Titre factice</p>
-            </article>
         </section>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" >
+import { computed, ref } from 'vue';
 
-//ecrire une variable qui correspond au template et la rendre dans le template
-// à chaque appele des données
+// Définissez le type des données passées en prop
+interface CardData {
+    id: string;
+    title: string;
+    cover: string;
+    pictures: string[];
+    description: string;
+    host: {
+        name: string;
+        picture: string;
+    };
+    rating: string;
+    location: string;
+    equipments: string[];
+    tags: string[];
+}
 
-// resuperer id et l'envoyer dans l'url
-// const modelCard = {""}
+// Props pour les données de la carte
+const props = defineProps<CardData>();
 
-// Recuperation du props sous forme de tableau de donnée 
-
-import a from '@/assets/imgHome.jpg'
-const el = 
-    {
-        // cover: "../assets/logoVue.svg",
-        cover: a,
-        description: "string",
-        equipments: ["string"],
-        host: {
-            name: "string",
-            picture: "string",
-        },
-        id: "123",
-        location: "string",
-        pictures: ["string"],
-        rating: "string",
-        tags: ["string"],
-        title: "Titre modif"
-    }
+const myData = ref(props.myData);
 
 
+const processedData = computed(() => {
+  if (!myData.value) return []
+    console.log("depuis le card")
+    console.log(myData.value) 
+  return myData.value;
+});
 
 </script>
 
