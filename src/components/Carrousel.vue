@@ -1,3 +1,12 @@
+<template>
+
+</template>
+
+<script setup lang="ts">
+
+</script>
+
+<style scoped>
 /* section */
 .carrousel {
     height: 420px;
@@ -85,3 +94,4 @@
         height: 330px;
     }
 }
+</style>

@@ -1,3 +1,60 @@
+<template>
+    <section>
+        <div class="dropdown" >
+            <div class="strip">
+                <h3 class="title">
+                    {{title}}
+                </h3>
+                <img
+                    tabIndex={0}
+                    role="button"
+                    src="@/assets/arrowDropdown.svg"
+                    alt="Flèche d'ouverture"
+                    @click="reverse"
+                    :class="arrowClassName"
+                    
+                />
+            </div>
+            <p v-if="dropdownValue" class="open"  >
+                    {{description}}
+                </p>
+        </div>
+
+  </section>
+
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+// Code à modifier
+
+// props : { title, description, page, tool, id, ul }
+const title = "titre "
+const description = "description je suis la description"
+
+
+// Code Fonctionel
+const dropdownValue = ref(true);
+let arrowClassName = 'arrowOpen' || 'arrowClose';
+
+function reverse(){
+    dropdownValue.value = !dropdownValue.value;
+    arrowClassName = dropdownValue.value ? 'arrowOpen' : 'arrowClose';
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+<!-- ******** -->
+
+<style scoped>
 section {
     margin: 50px 0 100px 0;
 }
@@ -11,11 +68,10 @@ section {
     border-radius: 5px;
     margin: 20px 85px;
 }
-.dropdownHouse {
+/* .dropdownHouse {
     border-radius: 5px;
-    /* margin: 20px; */
     width: 48%;
-}
+} */
 
 .strip {
     display: flex;
@@ -75,16 +131,16 @@ section {
     color: var(--colorPrimary);
     line-height: 18px;
 }
-.dropdownHouse > p,
+/* .dropdownHouse > p,
 .dropdownHouse > ul {
     min-height: 200px;
-}
+} */
 
 /* .open  */
-.close {
+/* .close {
     display: none;
     overflow: hidden;
-}
+} */
 
 @media screen and (min-width: 0px) and (max-width: 768px) {
     section {
@@ -98,24 +154,25 @@ section {
     .dropdownRow {
         flex-direction: column;
     }
-    .dropdownHouse {
+    /* .dropdownHouse {
         margin: 20px 0 20px 0;
         width: 100%;
-    }
+    } */
     .strip {
         height: 35px;
     }
     .strip > h3 {
         font-size: 16px;
     }
-
+/* 
     .dropdownHouse > p,
     .dropdownHouse > ul {
         min-height: 150px;
         font-size: 15px;
-    }
+    } */
     .dropdown > p,
     .dropdown > ul {
         font-size: 13px;
     }
 }
+</style>

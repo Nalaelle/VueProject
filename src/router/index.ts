@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Layout from '@/views/Layout.vue'
 import Home from '@/views/HomeView.vue'
 import About from '../views/AboutView.vue'
 import Housing from '../views/HousingView.vue'
@@ -6,20 +7,17 @@ import NotFound from '../views/NotFoundView.vue'
 
 const routes = [
   // { path: '/', component: () => import('../views/HomeView')  },
+
   { 
     path: '/', 
-    name: 'home',
-    component: Home 
-  },
-  { 
-    path: '/about', 
-    name: 'about',
-    component: About 
-  },
-  { 
-    path: '/housing:id', 
-    name: 'housing',
-    component: Housing 
+    name: 'layout',
+    component: Layout,
+    children: [
+      { path: '/', name: 'home', component: Home },
+      { path: '/about', name: 'about', component: About },
+      { path: '/housing:id', name: 'housing', component: Housing }
+
+    ]
   },
   { 
     path: '/:pathMatch(.*)', 
