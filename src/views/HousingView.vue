@@ -1,58 +1,72 @@
 <template>
-        <main key={Math.random()}>
-            <!-- <Carrousel dataHousing={dataHousing} /> -->
-            <div key=Math.random() class="infos">
+        <main key="Math.random()">
+            <Carrousel :pictures="processedData.pictures" />
+            <div key="Math.random()" class="infos">
                 <article class="location">
-                    <h1>Titre factice</h1>
-                    <p>Location factice</p>
-                    <!-- <Tags tags={el.tags} /> -->
+                    <h1>{{ processedData.title }}</h1>
+                    <p>{{ processedData.location }}</p>
+                    <Tags :tags="processedData.tags" />
                 </article>
                 <article class="owner">
                     <div class="infosOwner">
-                        <p>nom de l'hote</p>
+                        <p>{{ processedData.host.name }}</p>
                         <img
-                            src="@/assets/logoVue.svg"
-                            alt="description factice"
+                            :src="processedData.host.picture"
+                            alt="Profil of Host"
                         />
                     </div>
-                    <!-- <Rating numberRating={el.rating} /> -->
+                    <Rating :rating="processedData.rating" />
                 </article>
             </div>
-            <!-- <div key=Math.random() class="infos">
-                <article class="location">
-                    <h1>{el.title}</h1>
-                    <p>{el.location}</p>
-                    <Tags tags={el.tags} />
-                </article>
-                <article class="owner">
-                    <div class="infosOwner">
-                        <p>{el.host.name}</p>
-                        <img
-                            src={el.host.picture}
-                            alt={"Propriétaire " + el.host.name}
-                        />
-                    </div>
-                    <Rating numberRating={el.rating} />
-                </article>
-            </div> -->
-            <Dropdown />
+            <Dropdown :description="processedData.description"   :equipments="processedData.equipments"/>
 
         </main>
 </template>
 
 <script setup lang="ts">
 import Dropdown from "../components/DropdownHousing.vue";
+import Carrousel from "@/components/Carrousel.vue";
+import Tags from "../components/Tags.vue";
+import Rating from "../components/Rating.vue";
+import { onMounted, computed, ref } from 'vue';
+import {useFetch} from '@/hooks/useFetch';
+const url = '../data.json'
 
+const { data, isLoading, error} = useFetch<CardData>(url);
+// console.log("Avant")
+const props = defineProps({
+    id: String
+})
+const {id } = props
 
+interface CardData {
+    id: string | number;
+    title: string;
+    cover: string;
+    pictures: string[];
+    description: string;
+    host: {
+        name: string;
+        picture: string;
+    };
+    rating: string;
+    location: string;
+    equipments: string[];
+    tags: string[];
+}
+const processedData = computed(() => {
+  if (!data.value) return []
 
-
-
-
-
+  for (let i in data.value){
+    if(id == data.value[i].id){
+        // console.log("ok")
+        return data.value[i]
+    }
+  }
+});
 
 
 </script>
-
 
 
 

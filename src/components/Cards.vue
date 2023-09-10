@@ -1,6 +1,10 @@
 <template>
         <section class="homePage">
-            <RouterLink :to="`/housing:${id}`" class="card" >
+            <RouterLink :to="`/housing${id}`" 
+            class="card"
+            @click="choiceData"
+       
+            >
                 <article>
                     <img
                         class="imgCard"
@@ -14,9 +18,8 @@
 </template>
 
 <script setup lang="ts" >
-import { computed, ref } from 'vue';
-
-// Définissez le type des données passées en prop
+// import { computed, ref } from 'vue';
+//  type des données passées en prop
 interface CardData {
     id: string;
     title: string;
@@ -29,24 +32,29 @@ interface CardData {
     };
     rating: string;
     location: string;
-    equipments: string[];
+    equipments?: string[];
     tags: string[];
 }
 
-// Props pour les données de la carte
 const props = defineProps<CardData>();
+const currentData: CardData = props;
 
-const myData = ref(props.myData);
+// const { data } = defineProps<{
+//   data: CardData;
+// }>();
 
-
-const processedData = computed(() => {
-  if (!myData.value) return []
-    console.log("depuis le card")
-    console.log(myData.value) 
-  return myData.value;
-});
+const emits = defineEmits();
+function choiceData(){
+    // let data: CardData = currentData
+    emits('card-clicked', currentData);
+    return currentData;
+}
 
 </script>
+
+
+
+
 
 
 <style scoped>

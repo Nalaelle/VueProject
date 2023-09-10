@@ -34,39 +34,28 @@
 <script setup lang="ts">
 import Cards from "../components/Cards.vue";
 
-import { onMounted, computed, ref } from 'vue';
+// import { onMounted, computed, ref } from 'vue';
 import {useFetch} from '@/hooks/useFetch';
 const url = '../data.json'
 
-const { data, isLoading, error} = useFetch(url);
-console.log("Avant")
+const { data, isLoading, error} = useFetch<CardData>(url);
+// console.log("Avant")
 
-
-const processedData = computed(() => {
-  if (!data.value) return []
-  // console.log(data.value) //ok recuperation 
-  return data.value;
-});
-
-const myData = ref(null)
-
-onMounted(async () => {
-//   console.log("composant monté")
-//     console.log(data.value);
-    const { data, error } = useFetch(url);
-  if (error.value) {
-    console.error(error.value);
-  } else if(data.value){
-    myData.value = data.value;
-  }
-
-});
-
-// const processedData = processData(data.value);
-
-
-
-
+interface CardData {
+    id: string | number;
+    title: string;
+    cover: string;
+    pictures: string[];
+    description: string;
+    host: {
+        name: string;
+        picture: string;
+    };
+    rating: string;
+    location: string;
+    equipments: string[];
+    tags: string[];
+}
 
 
 </script>

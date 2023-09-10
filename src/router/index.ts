@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import Layout from '@/views/Layout.vue'
 import Home from '@/views/HomeView.vue'
 import About from '../views/AboutView.vue'
 import Housing from '../views/HousingView.vue'
 import NotFound from '../views/NotFoundView.vue'
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   // { path: '/', component: () => import('../views/HomeView')  },
 
   { 
@@ -15,7 +15,7 @@ const routes = [
     children: [
       { path: '/', name: 'home', component: Home },
       { path: '/about', name: 'about', component: About },
-      { path: '/housing:id', name: 'housing', component: Housing }
+      { path: '/housing:id', name: 'housing', component: Housing, props: true }
 
     ]
   },
@@ -32,3 +32,22 @@ const router = createRouter({
 })
 
 export default router
+
+
+// const routes: RouteRecordRaw[] = [
+//   {
+//     path: '/mon-chemin',
+//     component: MonComposant,
+//     props: {
+//       maPropStatique: 'Valeur statique',
+//     },
+//     children: [
+//       {
+//         path: 'enfant/:id',
+//         component: EnfantComposant,
+//         props: (route) => ({
+//           id: Number(route.params.id),
+//           autreProp: 'Valeur calculée',
+//         }),
+//       },
+//     ]

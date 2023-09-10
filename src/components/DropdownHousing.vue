@@ -1,36 +1,5 @@
 <template>
     <section>
-                 <!-- 
-                            let toolsIteration;
-        dataHousing.map((el) => {
-            return (toolsIteration = el.equipments.map((tools) => (
-                <li key={el.id + Math.random()} className={style.listTools}>
-                    {tools}
-                </li>
-
-
-            <section>
-                <div key={Math.random()} className={style.dropdownRow}>
-                    <Drop
-                        key={dataID + Math.random()}
-                        description={dataHousing[0].description}
-                        page="housing"
-                        tool={toolsIteration}
-                        id={dataID}
-                        title={"Description"}
-                    />
-                    <Drop
-                        key={dataID + Math.random()}
-                        description={dataHousing[0].equipments}
-                        page="housing"
-                        tool={toolsIteration}
-                        id={dataID}
-                        title={"Équipements"}
-                        ul={true}
-                    />
-                </div>
-            </section>
-                         /> -->
         <div class="dropdownHouse" >
             <div class="strip">
                 <h3 class="title">
@@ -65,10 +34,14 @@
                     :class="arrowClassName"
                 />
             </div>
-            <ul v-if="dropdownValue" :class="`equipmentsValue containerTools`"
-        >
-           {{ equipments }}
-        </ul>
+            <ul v-if="dropdownValue"
+            :class="`equipmentsValue containerTools`"
+            >
+                <li
+                v-for="(item, index) in equipments" :key="index"
+                class="listTools">{{ item }}</li>
+         
+            </ul>
         </div>
 
   </section>
@@ -78,9 +51,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-// props : { title, description, page, tool, id, ul }
-const description = "description"
-const equipments = " description  equipement "
+
+const props = defineProps<DataDropdown>();
+const { description, equipments } = props
+
+const current: DataDropdown = props
+interface DataDropdown {
+    description: string,
+    equipments: [string]
+}
+
 
 // Code Fonctionel
 const dropdownValue = ref(true);
